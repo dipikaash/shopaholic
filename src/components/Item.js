@@ -34,15 +34,20 @@ const Item = (props) => {
                 <CssBaseline />
                 <Box sx={gridSx}>
                     <Grid className="item-card" container spacing={6}>
-                        <Grid item xs={4}>
+                        <Grid item xs={3}>
                             <img className="item-logo" src={img} alt="loading..." />
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={5}>
                             <h3 className="item-elem">{name}</h3>
-                            <h4 className="item-elem">{specs}</h4>
-                            <h4 className="item-elem">{price}</h4>
+                            {specs.map((spec)=>(
+                                <h4 className="item-elem" key={spec} >{spec}</h4>
+                            )
+                            )}  
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={2}>
+                        <h4 className="item-elem">Price: {price} Only</h4>
+                        </Grid>
+                        <Grid item xs={2}>
                         <Button id="id" className="item-elem" type='submit' variant='contained'
                         onClick={(event)=>{addToCart(id)}}> Add Item</Button>
                         </Grid>
