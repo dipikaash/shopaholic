@@ -1,0 +1,32 @@
+{
+    "products": [
+        {
+            "id": 22,
+            "img": "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/3/5/l/-original-imaghx9qmgqsk9s4.jpeg?q=70",
+            "name": "APPLE iPhone 14 (Blue, 128 GB)",
+            "specs": ["12 GB ROM","15.49cm super retina display","A15 bionic chip","6 core processor"],
+            "price": 56999
+        },
+        {
+            "id": 24,
+            "img": "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/m/o/b/-original-imaghx9qkugtbfrn.jpeg?q=70",
+            "name": "APPLE iPhone 14 (Starlight, 128 GB)",
+            "specs": ["12 GB ROM","15.49cm super retina display","A15 bionic chip","6 core processor"],
+            "price": 56999
+        },
+        {
+            "id": 26,
+            "img": "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/c/4/d/-original-imaghx9qygjjg8hz.jpeg?q=70",
+            "name": "APPLE iPhone 14 plus (Blue, 128 GB)",
+            "specs": ["12 GB ROM","17.02cm super retina XDR display","A15 bionic chip","6 core processor"],
+            "price": 65999            
+        },
+        {
+            "id": 28,
+            "img": "https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/a/b/0/-original-imaghx9qnhzxegu2.jpeg?q=70",
+            "name": "APPLE iPhone 14 plus (Midnight, 128 GB)",
+            "specs": ["12 GB ROM","17.02cm super retina XDR display","A15 bionic chip","6 core processor"],
+            "price": 65999             
+        }
+    ]
+}
