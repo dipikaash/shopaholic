@@ -55,10 +55,6 @@ export const products = createSlice({
       state.totalBill = bill;
     },
     ConfirmOrder: (state, inputs) => {
-      // state.cart.forEach((item)=>{
-      //   state.orderedItems.push(item)
-      // })
-      //  state.orderedItems = [...state.cart];
       state.orderedItems = JSON.parse(JSON.stringify(state.cart));
       state.cart = [];
     }
