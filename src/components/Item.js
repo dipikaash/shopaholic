@@ -1,11 +1,11 @@
-import { Button } from "@mui/material";
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+import { Button, Grid, Box } from "@mui/material";
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from "@mui/material/CssBaseline";
 import { useDispatch } from "react-redux";
-import { AddToCart, DeleteFromCart } from "../Store/ProductsSlice";
+import { AddToCart, CartItemDecrement, DeleteFromCart, CartItemIncrement } from "../Store/ProductsSlice";
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
 
 const defaultTheme = createTheme();
 const gridSx = {
@@ -19,7 +19,7 @@ const gridSx = {
 }
 
 const Item = (props) => {
-    const { img, name, specs, price } = props.data;
+    const { img, name, specs, price, count} = props.data;
     const dispatch = useDispatch();
     const addToCart = () => {
         let cartItem = {
@@ -50,14 +50,27 @@ const Item = (props) => {
                         </Grid>
                         <Grid item xs={2}>
                             <h4 className="item-elem">Price: {price} Only</h4>
+                            <h4 className="item-elem">Quantity: {count}</h4>
                         </Grid>
                         {!props.showOrderDetails &&
                             <Grid item xs={2}>
                                 {!props.showCounter ?
                                     (<Button id="id" className="item-elem" type='submit' variant='contained'
                                         onClick={() => { addToCart() }}> Add Item</Button>)
-                                    : (<Button id="id" className="item-elem" color='error' variant='outlined'
-                                        onClick={() => { deleteFromCart() }}> Remove</Button>)
+                                    : (
+                                    <> <Grid>
+                                        <RemoveCircleOutlineOutlinedIcon 
+                                        className="minus-icon"
+                                        color="secondary"
+                                         onClick={()=>{dispatch(CartItemDecrement(props.data))}}></RemoveCircleOutlineOutlinedIcon>
+                                        {count}
+                                        <AddCircleOutlineIcon
+                                        color="secondary"
+                                        className="add-icon" 
+                                        onClick={()=>{dispatch(CartItemIncrement(props.data))}}></AddCircleOutlineIcon></Grid>
+                                    <Button id="id" className="item-elem" color='error' variant='outlined'
+                                        onClick={() => { deleteFromCart() }}> Remove</Button>
+                                    </>)
                                 }
                             </Grid>}
                     </Grid>

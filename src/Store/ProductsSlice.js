@@ -44,15 +44,16 @@ export const products = createSlice({
     CartItemDecrement: (state, inputs) => {
       state.cart.forEach((item) => {
         if (item.id === inputs.payload.id)
+        if(item.count>1)
           item.count = item.count - 1;
+        else
+         window.alert("minimum amount can't be reduced, try removing item");
       })
     },
     CartBill: (state, inputs) => {
       let total = 0;
-      console.log(state.cart, "cart");
-      let bill = state.cart.forEach((item) => total = total + item.count * item.price);
-      console.log(bill, "total");
-      state.totalBill = bill;
+      inputs.payload.forEach((item) => total = total + item.count * item.price);
+      state.totalBill = total;
     },
     ConfirmOrder: (state, inputs) => {
       state.orderedItems = JSON.parse(JSON.stringify(state.cart));

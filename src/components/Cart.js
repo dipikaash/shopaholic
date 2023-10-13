@@ -9,17 +9,17 @@ const Cart = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleCheckout = () => {
-        dispatch(CartBill());
-        if (window.confirm("Sure to pay total bill" + totalBill + "?")) {
+        dispatch(CartBill(cart));
+        if (window.confirm("Sure to pay total bill: " + totalBill + "?")) {
             dispatch(ConfirmOrder());
             navigate("/orderDetails");
         };
     }
-    
+
     return (
         <div>
-            <Typography variant="h6" component="div">Cart Details</Typography>
-            {cart.length < 1 ? (<Typography variant="h6" component="div">Oops! Cart is empty</Typography>) :
+            <Typography variant="h4" component="div">Cart Details</Typography>
+            {cart.length < 1 ? (<Typography variant="h6" component="div" paddingTop={5}>Oops! Cart is empty</Typography>) :
                 (
                     <div className="item-container">
                         {cart.map((cartItem) => (<Item key={cartItem.id} data={cartItem} showCounter={true} />))}
