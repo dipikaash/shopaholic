@@ -6,13 +6,14 @@ import { fetchProductList } from "../Store/ProductsSlice";
 const ProductList = () => {
     const dispatch = useDispatch();
     const { productList: list } = useSelector((state) => state.products);
-    useEffect(()=>{
-           dispatch(fetchProductList());
-    },[dispatch]);
+    useEffect(() => {
+        dispatch(fetchProductList());
+    }, [dispatch]);
+    
     return (
         <div className="item-container">
             {list.map((listItem) => (<Item key={listItem.id} data={listItem} showCounter={false} />))}
-            </div>
+        </div>
     )
 }
 
