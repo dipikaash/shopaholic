@@ -3,13 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import Item from "./Item";
 import { CartBill, ConfirmOrder } from '../Store/ProductsSlice';
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Cart = () => {
     const { cart, totalBill } = useSelector((state) => state.products);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const handleCheckout = () => {
+    useEffect(() => {
         dispatch(CartBill(cart));
+    }, [dispatch, cart]);
+    const handleCheckout = () => {
+        dispatch(CartBill(cart))
         if (window.confirm("Sure to pay total bill: " + totalBill + "?")) {
             dispatch(ConfirmOrder());
             navigate("/orderDetails");
