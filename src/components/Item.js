@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from "@mui/material/CssBaseline";
+import { useDispatch, useSelector } from "react-redux";
+import { AddToCart, CartItemIncrement, DeleteFromCart } from "../Store/ProductsSlice";
 
 const defaultTheme = createTheme();
 const gridSx = {
@@ -17,16 +19,20 @@ const gridSx = {
 }
 
 const Item = (props) => {
-    const {img, name, specs, price,id } = props.data;
-    const addToCart = (id) => {
+    const {img, name, specs, price } = props.data;
+    const dispatch = useDispatch();
+    const { cart } = useSelector((state) => state.products);
+    const addToCart = () => {
         let cartItem = {
             ...props.data,
             count: 1
         }
-        localStorage.setItem('cart', JSON.stringify(cartItem))
-        // let cart = localStorage.getItem(cart);
-        // console.log(cart);
-        //localStorage.setItem()
+        // let existingItem = cart.filter((item)=> item.id === props.data.id);
+        // existingItem ? dispatch(CartItemIncrement(existingItem)) : 
+        dispatch(AddToCart(cartItem));
+    }
+    const deleteFromCart = () => {
+        dispatch(DeleteFromCart(props.data))
     }
     return (<>
         <ThemeProvider theme={defaultTheme}>
@@ -47,10 +53,15 @@ const Item = (props) => {
                         <Grid item xs={2}>
                         <h4 className="item-elem">Price: {price} Only</h4>
                         </Grid>
+                        {!props.showOrderDetails && 
                         <Grid item xs={2}>
-                        <Button id="id" className="item-elem" type='submit' variant='contained'
-                        onClick={(event)=>{addToCart(id)}}> Add Item</Button>
-                        </Grid>
+                            {!props.showCounter ?
+                            (<Button id="id" className="item-elem" type='submit' variant='contained'
+                        onClick={()=>{addToCart()}}> Add Item</Button>)
+                        :(<Button id="id" className="item-elem" color='error' variant='outlined'
+                        onClick={()=>{deleteFromCart()}}> Remove</Button>)
+                        }
+                        </Grid>}
                     </Grid>
                 </Box>
             </Container>
